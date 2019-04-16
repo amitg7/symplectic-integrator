@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 
 class Integrator:
     """
-    Base class of symplectic integrators.
+    Base class of integrators.
     """
     def single_step_func(self, q_curr, p_curr, dt):
         """
