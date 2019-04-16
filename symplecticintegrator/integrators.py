@@ -48,6 +48,33 @@ class SymplecticIntegrator(Integrator):
         return single_step_func
 
     def __init__(self, hamiltonian, q_symbols, p_symbols, parameter_subs=None, order=1):
+        """
+
+        Parameters
+        ----------
+        hamiltonian : Sympy Expr
+            Hamiltonian symbolic expression
+        q_symbols : list of Sympy Symbols.
+            Position variables in the Hamiltonian.
+        p_symbols : list of Sympy Symbols.
+            Momentum variables in the Hamiltonian.
+        parameter_subss : dict
+            Substitutions of the free variables in the Hamiltonian. The keys are Sympy Symbols and the values are numbers.
+        order : {1, 2, 3, 4}, optional
+            The order of the integrator. One of
+
+            ``1``
+                First-order (Symplectic Euler method).
+
+            ``2``
+                Second-order (Verlet Integration).
+
+            ``3``
+                Third-order (Ruth).
+
+            ``4``
+                Fourth-order (Forest and Ruth).
+        """
         super().__init__(hamiltonian, q_symbols, p_symbols, parameter_subs)
         self.order = order
         self.single_step_func = self._create_single_step_func(order)
@@ -56,11 +83,6 @@ class SymplecticIntegrator(Integrator):
 
 
 #region Non-Symplectic integrators
-
-class NothingIntegrator(Integrator):
-    def single_step_func(self, q_curr, p_curr, dt):
-        return q_curr, p_curr
-
 
 class EulerIntegrator(Integrator):
     def single_step_func(self, q_curr, p_curr, dt):
@@ -79,6 +101,9 @@ class MidpointIntegrator(Integrator):
 
 
 class RungeKutta4Integrator(Integrator):
+    """
+    Fourth-order Runge-Kutta integrator.
+    """
     def single_step_func(self, q_curr, p_curr, dt):
         k1_q = self.dq_dt(q_curr, p_curr)
         k1_p = self.dp_dt(q_curr, p_curr)
