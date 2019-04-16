@@ -14,10 +14,10 @@ def integrator(hamiltonian, q_symbols, p_symbols, parameter_subs=None, itype='sy
     Parameters
     ----------
     hamiltonian : Sympy Expr
-        Hamiltonian symbolic expression
-    q_symbols : list of Sympy Symbols.
+        Hamiltonian symbolic expression.
+    q_symbols : list of Sympy Symbols
         Position variables in the Hamiltonian.
-    p_symbols : list of Sympy Symbols.
+    p_symbols : list of Sympy Symbols
         Momentum variables in the Hamiltonian.
     parameter_subs : dict, optional
         Substitutions of the free variables in the Hamiltonian. The keys are Sympy Symbols and the values are numbers.

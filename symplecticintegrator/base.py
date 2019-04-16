@@ -59,10 +59,10 @@ class Integrator:
         Parameters
         ----------
         hamiltonian : Sympy Expr
-            Hamiltonian symbolic expression
-        q_symbols : list of Sympy Symbols.
+            Hamiltonian symbolic expression.
+        q_symbols : list of Sympy Symbols
             Position variables in the Hamiltonian.
-        p_symbols : list of Sympy Symbols.
+        p_symbols : list of Sympy Symbols
             Momentum variables in the Hamiltonian.
         parameter_subs : dict
             Substitutions of the free variables in the Hamiltonian. The keys are Sympy Symbols and the values are numbers.
@@ -131,6 +131,14 @@ class Integrator:
         return q_time, p_time
 
     def energy_time(self):
+        """
+        Energy in time.
+
+        Returns
+        -------
+        res : array
+            Energy in time.
+        """
         return self.energy_func(self.q_time, self.p_time)
 
     def plot(self, indices=None):
